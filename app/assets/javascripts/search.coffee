@@ -43,3 +43,13 @@ $(document).ready ->
 # Handle presence of Javascript by turning off or on visibility of JS sensitive objects
 $('.js-disabled-object').css 'visibility': 'hidden'
 $('.js-enabled-object').css 'visibility': 'visible'
+
+#On search caret click, show search dropdown
+$ ->
+  $('#search-drop-button').on 'click', ->
+    if $('.dropdown').css('visibility') == 'hidden'
+      $('.dropdown').css('visibility': 'visible')
+      $('#search-drop-caret').css('transform': 'rotate(180deg)')
+    else
+      $('.dropdown').css('visibility': 'hidden')
+      $('#search-drop-caret').css('transform': 'rotate(0deg)')
