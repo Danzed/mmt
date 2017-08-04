@@ -1,5 +1,5 @@
 class CollectionsController < ManageCollectionsController
-  include ManageCollectionsHelper
+  include ManageMetadataHelper
 
   before_action :set_collection
   before_action :ensure_correct_collection_provider, only: [:edit, :clone, :revert, :destroy]
@@ -117,7 +117,7 @@ class CollectionsController < ManageCollectionsController
       # but if we are reverting, we should get the collection in it's native format, so set content-type appropriately
       content_type = 'application/metadata+xml; charset=utf-8' if params[:action] == 'revert'
 
-      collection_response = cmr_client.get_concept(@concept_id, token, content_type, @revision_id)
+      collection_response = cmr_client.get_concept(@concept_id, token, { 'Accept' => content_type }, @revision_id)
       @collection = collection_response.body
       @collection_format = collection_response.headers.fetch('content-type', '')
     else
