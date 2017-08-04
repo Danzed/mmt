@@ -66,3 +66,20 @@ $ ->
     variablesSelected = $('#record_state_variables').prop('checked')
     if variablesSelected
       $("#search-text").html('<span style="padding-right: 11px;">Search Variables</span>');
+
+# Change focus of cursor when search link is clicked on Manage Collections, Manage Variables, or Manage Services pages.
+$ ->
+ $('#search-focus').on 'click', ->
+    $('#keyword').focus()
+    $('#login-info').css 'visibility': 'hidden'
+    $('#dropdown-caret').css 'transform': 'rotate(0deg)'
+  return
+
+# If search-box has focus then hide the user menu and flip the caret
+$ ->
+  $('#keyword').on 'click', ->
+    $('#login-info').css 'visibility': 'hidden'
+    $('dropdown-caret').css 'visibility': 'rotate(0deg)'
+
+    document.getElementById('keyword').focus()
+  return
